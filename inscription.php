@@ -28,7 +28,7 @@ if(isset($_POST['forminscription'])) {
                      $insertmbr->execute(array($prenom, $mail, $mdp, $key));
 
                      $header="MIME-Version: 1.0\r\n";
-                     $header.='From:"PrimFX.com"<support@primfx.com>'."\n";
+                     $header.='From:"Site de rencontre"<confirmation.rencontres@gmail.com>'."\n";
                      $header.='Content-Type:text/html; charset="utf-8"'."\n";
                      $header.='Content-Transfer-Encoding: 8bit';
                      
@@ -36,7 +36,7 @@ if(isset($_POST['forminscription'])) {
                      <html>
                         <body>
                            <div align="center">
-                              <a href="http://localhost/siterencontre/confirmation.php?prenom='.urlencode($prenom).'&key='.$key.'">Confirmez votre compte !</a>
+                              <a href="http://aclab/confirmation.php?prenom='.urlencode($prenom).'&key='.$key.'">Confirmez votre compte !</a>
                            </div>
                         </body>
                      </html>
