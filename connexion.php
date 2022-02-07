@@ -26,7 +26,8 @@ if(isset($_POST['formconnexion'])) {
 ?>
 <html>
    <head>
-      <title>TEST PHP</title>
+   <link rel="stylesheet" type="text/css" href="css/style.css">
+      <title>Connexion</title>
       <meta charset="utf-8">
    </head>
    <body>
@@ -38,12 +39,12 @@ if(isset($_POST['formconnexion'])) {
             <input type="password" name="mdpconnect" placeholder="Mot de passe" />
             <br /><br />
             <input type="submit" name="formconnexion" value="Se connecter !" />
-         </form>
-         <?php
+            <?php
          if(isset($erreur)) {
             echo '<font color="red">'.$erreur."</font>";
          }
          ?>
+         </form>
       </div>
    </body>
 </html>

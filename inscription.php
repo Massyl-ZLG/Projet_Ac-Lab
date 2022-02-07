@@ -28,7 +28,7 @@ if(isset($_POST['forminscription'])) {
                      $insertmbr->execute(array($prenom, $mail, $mdp, $key));
 
                      $header="MIME-Version: 1.0\r\n";
-                     $header.='From:"PrimFX.com"<support@primfx.com>'."\n";
+                     $header.='From:"Site de rencontre"<confirmation.rencontres@gmail.com>'."\n";
                      $header.='Content-Type:text/html; charset="utf-8"'."\n";
                      $header.='Content-Transfer-Encoding: 8bit';
                      
@@ -36,7 +36,7 @@ if(isset($_POST['forminscription'])) {
                      <html>
                         <body>
                            <div align="center">
-                              <a href="http://localhost/siterencontre/confirmation.php?prenom='.urlencode($prenom).'&key='.$key.'">Confirmez votre compte !</a>
+                              <a href="http://aclab/confirmation.php?prenom='.urlencode($prenom).'&key='.$key.'">Confirmez votre compte !</a>
                            </div>
                         </body>
                      </html>
@@ -68,20 +68,19 @@ if(isset($_POST['forminscription'])) {
 
 <html>
    <head>
-      <title>INSCRIPTION</title>
+      <link rel="stylesheet" type="text/css" href="css/style.css">
+      <title>Inscription</title>
       <meta charset="utf-8">
    </head>
    <body>
       <div align="center">
          <h2>Inscription</h2>
          <br /><br />
-        
-
          <form method="POST" action="">
             <table>
                <tr>
                   <td align="right">
-                     <label for="prenom">prenom :</label>
+                     <label for="prenom">Prénom :</label>
                   </td>
                   <td>
                      <input type="text" placeholder="Votre prenom" id="prenom" name="prenom" value="<?php if(isset($prenom)) { echo $prenom; } ?>" />
@@ -123,16 +122,18 @@ if(isset($_POST['forminscription'])) {
                   <td></td>
                   <td align="center">
                      <br />
-                     <input type="submit" name="forminscription" value="Je m'inscris" />
                   </td>
                </tr>
             </table>
-         </form>
-         <?php
+            <input type="submit" name="forminscription" value="Je m'inscris" />
+            <div class = "erreur">
+            <?php
          if(isset($erreur)) {
             echo '<font color="red">'.$erreur."</font>";
          }
          ?>
+         </div>
+         </form>
       </div>
    </body>
 </html>
