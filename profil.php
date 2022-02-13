@@ -3,8 +3,8 @@ session_start();
  
 $bdd = new PDO('mysql:host=127.0.0.1;dbname=espace_membre', 'root', '');
  
-if(isset($_GET['id']) AND $_GET['id'] > 0) {
-   $getid = intval($_GET['id']);
+if(isset($_SESSION['id']) && $_SESSION['id'] > 0) {
+   $getid = intval($_SESSION['id']);
    $requser = $bdd->prepare('SELECT * FROM membres WHERE id = ?');
    $requser->execute(array($getid));
    $userinfo = $requser->fetch();
@@ -23,17 +23,16 @@ if(isset($_GET['id']) AND $_GET['id'] > 0) {
          Mail = <?php echo $userinfo['mail']; ?>
          <br />
          <?php
-         if(isset($_SESSION['id']) AND $userinfo['id'] == $_SESSION['id']) {
-         ?>
-         <br />
-         <a href="editionprofil.php">Editer mon profil</a>
-         <a href="deconnexion.php">Se déconnecter</a>
-         <?php
+         if(isset($_SESSION['id']) AND $userinfo['id'] == $_SESSION['id']) {         
          }
          ?>
+         <a href="editionprofil.php">Editer mon profil</a>
+         <a href="page_principale.php">Home</a>
+         <a href="deconnexion.php">Se déconnecter</a>
+         <br />
       </div>
    </body>
 </html>
-<?php   
+<?php
 }
 ?>

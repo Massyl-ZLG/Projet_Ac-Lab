@@ -7,7 +7,17 @@ if(isset($_POST['forminscription'])) {
    $mail2 = htmlspecialchars($_POST['mail2']);
    $mdp = sha1($_POST['mdp']);
    $mdp2 = sha1($_POST['mdp2']);
-   if(!empty($_POST['prenom']) AND !empty($_POST['mail']) AND !empty($_POST['mail2']) AND !empty($_POST['mdp']) AND !empty($_POST['mdp2'])) {
+   $date_nais = $_POST['naissance'];
+   date_default_timezone_set("Europe/Paris");
+   $date_actuelle = date("Y-m-d");
+
+   if (isset($_POST['genre'])) {
+      $genre = htmlspecialchars($_POST['genre']);
+  }
+   $diff = abs(strtotime($date_actuelle) - strtotime($date_nais));
+   $years = floor($diff / (365*60*60*24));
+
+   if(!empty($_POST['prenom']) AND !empty($_POST['mail']) AND !empty($_POST['mail2']) AND !empty($_POST['mdp']) AND !empty($_POST['mdp2']) AND !empty($_POST['naissance']) AND !empty($_POST['genre'])) {
       $prenomlength = strlen($prenom);
       if($prenomlength <= 255) {
          if($mail == $mail2) {
@@ -22,10 +32,9 @@ if(isset($_POST['forminscription'])) {
                      for($i=1;$i<$longueurKey;$i++){
                         $key .=  mt_rand(0,9);
                      }
-
-
-                     $insertmbr = $bdd->prepare("INSERT INTO membres(prenom, mail, motdepasse, confirmkey) VALUES(?, ?, ?, ?)");
-                     $insertmbr->execute(array($prenom, $mail, $mdp, $key));
+                     if ($years>=18){
+                     $insertmbr = $bdd->prepare("INSERT INTO membres(prenom, Genre, mail, motdepasse, confirmkey, date_nais) VALUES(?, ?, ?, ?, ?, ?)");
+                     $insertmbr->execute(array($prenom, $genre, $mail, $mdp, $key, $date_nais));
 
                      $header="MIME-Version: 1.0\r\n";
                      $header.='From:"Site de rencontre"<confirmation.rencontres@gmail.com>'."\n";
@@ -43,8 +52,11 @@ if(isset($_POST['forminscription'])) {
                      ';
 
                      mail($mail, "Confirmation de compte", $message, $header); 
-
-                     $erreur = "Votre compte a bien été créé ! <a href=\"connexion.php\">Me connecter</a>";
+                     
+                     $success = "Votre compte a bien été créé ! Veuillez confirmer votre mail";
+                     } else {
+                        $erreur = "Désolé, tu es trop jeune !";
+                     }
                   } else {
                      $erreur = "Vos mots de passes ne correspondent pas !";
                   }
@@ -88,6 +100,20 @@ if(isset($_POST['forminscription'])) {
                </tr>
                <tr>
                   <td align="right">
+                  <label for="naissance">Date de naissance</label>
+                  </td>
+                  <td>
+                  <input type="date" id="naissance" name = "naissance" value="<?php if(isset($date_nais)) { echo $date_nais; } ?>" min="1922-02-07"/>
+                  </td>
+               </tr>
+               <tr>
+                  <td align="right">
+                  <label for="M">Homme</label>
+                  <input type="radio" id="M" name="genre" value="M"><br>
+                  <label for="F">Femme</label>
+                  <input type="radio" id="F" name="genre" value="F">
+               </tr>
+                  <td align="right">
                      <label for="mail">Mail :</label>
                   </td>
                   <td>
@@ -125,15 +151,21 @@ if(isset($_POST['forminscription'])) {
                   </td>
                </tr>
             </table>
-            <input type="submit" name="forminscription" value="Je m'inscris" />
-            <div class = "erreur">
+            <div class = "message">
             <?php
          if(isset($erreur)) {
             echo '<font color="red">'.$erreur."</font>";
          }
+         
+         if(isset($success)) {
+            echo '<font color="blue">'.$success."</font>";
+         }
+
          ?>
          </div>
+            <input type="submit" name="forminscription" value="Je m'inscris" />
          </form>
+         <p>Vous avez déjà un compte ?<a href="connexion.php"> Connectez vous !</a></p>
       </div>
    </body>
 </html>

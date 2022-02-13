@@ -41,17 +41,28 @@ if(isset($_SESSION['id'])) {
          <h2>Edition de mon profil</h2>
          <div align="left">
             <form method="POST" action="" enctype="multipart/form-data">
-               <label>prenom :</label>
-               <input type="text" name="newprenom" placeholder="prenom" value="<?php echo $user['prenom']; ?>" /><br /><br />
+	       <label>prenom :</label>
+	       <input type="text" name="newprenom" placeholder="prenom" value="<?php echo $user['prenom']; ?>" /><br /><br />
+	       <label>Photo de profil :</label>
+	       <input type ="file" name = "image"/>
+          <br><br>
+               <!--<input type= "submit" name ="valider" value="Envoyer" /><br /><br />--> 
                <label>Mail :</label>
                <input type="text" name="newmail" placeholder="Mail" value="<?php echo $user['mail']; ?>" /><br /><br />
                <label>Mot de passe :</label>
                <input type="password" name="newmdp1" placeholder="Mot de passe"/><br /><br />
                <label>Confirmation - mot de passe :</label>
                <input type="password" name="newmdp2" placeholder="Confirmation du mot de passe" /><br /><br />
-               <input type="submit" value="Mettre à jour mon profil !" />
+               <input name="actualiser" type="submit" value="Mettre à jour mon profil !" />
             </form>
-            <?php if(isset($msg)) { echo $msg; } ?>
+<?php
+      if(isset($_POST["actualiser"])){
+      $newimage = $_POST['image'];
+      $insertimage = $bdd->prepare("UPDATE membres SET pdp = ? WHERE id = ?");
+      $insertimage->execute(array(file_get_contents($_FILES["image"]["tmp_name"]), $_SESSION['id']));
+      header('Location: profil.php?id='.$_SESSION['id']);
+   }
+?>
          </div>
       </div>
    </body>

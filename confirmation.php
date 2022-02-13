@@ -21,3 +21,14 @@ if(isset($_GET['prenom'], $_GET['key']) AND !empty($_GET['prenom']) AND !empty($
    }
 }
 ?>
+
+<html>
+   <head>
+      <link rel="stylesheet" type="text/css" href="css/style.css">
+      <title>Inscription</title>
+      <meta charset="utf-8">
+   </head>
+   <body>
+   <p>Vous y êtes presque ! Plus qu'à charger votre photo de profil !<a href="connexion.php"> Connectez vous pour le faire</a></p>
+   </body>
+</html>
