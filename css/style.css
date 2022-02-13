@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900');
+*
 input[type=text] {
   font-family:Helvetica; 
   padding:10px;
@@ -64,4 +66,38 @@ form {
 
 label {
   font-family: "Raleway", sans-serif;
+}
+
+.action .buttons
+{
+    list-style: none;
+    padding: 10px 0;
+    border-top: 1px solid rgba(0,0,0,0.05);
+    display: flex;
+    align-items: center;
+}
+.action .buttons img
+{
+    max-width: 20px;
+    margin-right: 10px;
+    opacity: 0.5;
+    transition: 0.5s;
+}
+.action .buttons:hover img
+{
+    opacity: 1;
+
+}
+.action .buttons a
+{
+    display: inline-block;
+    text-decoration: none;
+    color: #555;
+    font-weight: 500;
+    transition: 0.5s;
+}
+.action .buttons:hover a
+{
+    color: #000000;
+
 }

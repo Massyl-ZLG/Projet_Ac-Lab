@@ -34,19 +34,22 @@ if(isset($_SESSION['id'])) {
 <html>
    <head>
       <title>TUTO PHP</title>
+      <link rel="stylesheet" href="style.css">
       <meta charset="utf-8">
    </head>
    <body>
-      <div align="center">
+   <div class="global">
+      <div class="buttons">  
+      <img src="images/home.png"><a href="page_principale.php">Home</a>
+      </div>
+      <div class="edition"> 
          <h2>Edition de mon profil</h2>
-         <div align="left">
-            <form method="POST" action="" enctype="multipart/form-data">
+         <form method="POST" action="" enctype="multipart/form-data">
 	       <label>prenom :</label>
 	       <input type="text" name="newprenom" placeholder="prenom" value="<?php echo $user['prenom']; ?>" /><br /><br />
 	       <label>Photo de profil :</label>
 	       <input type ="file" name = "image"/>
-          <br><br>
-               <!--<input type= "submit" name ="valider" value="Envoyer" /><br /><br />--> 
+          <br><br> 
                <label>Mail :</label>
                <input type="text" name="newmail" placeholder="Mail" value="<?php echo $user['mail']; ?>" /><br /><br />
                <label>Mot de passe :</label>
@@ -62,9 +65,9 @@ if(isset($_SESSION['id'])) {
       $insertimage->execute(array(file_get_contents($_FILES["image"]["tmp_name"]), $_SESSION['id']));
       header('Location: profil.php?id='.$_SESSION['id']);
    }
-?>
-         </div>
-      </div>
+?>  
+   </div>
+   </div>
    </body>
 </html>
 <?php   

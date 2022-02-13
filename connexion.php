@@ -27,26 +27,45 @@ if(isset($_POST['formconnexion'])) {
 ?>
 <html>
    <head>
-   <link rel="stylesheet" type="text/css" href="css/style.css">
+   <link rel="stylesheet" type="text/css" href="css_connexion/style.css">
       <title>Connexion</title>
       <meta charset="utf-8">
    </head>
    <body>
-      <div align="center">
+      <section>   
+         <div class="imgBx">
+            <img src="images/fond.jpg">
+         </div>
+         <div class="contentBx">
+         <div class="formBx">
          <h2>Connexion</h2>
-         <br /><br />
          <form method="POST" action="">
+            <div class="inputBx">
+               <span>EMail</span>
             <input type="email" name="mailconnect" placeholder="Mail" />
+            </div>
+            <div class="inputBx">
+               <span>Password</span>
             <input type="password" name="mdpconnect" placeholder="Mot de passe" />
-            <br /><br />
+            </div>
+            <div class="remember">
+               <label> <input type="checkbox" name="">Se souvenir de moi</label>
+            </div>
+            <div class="inputBx">
             <input type="submit" name="formconnexion" value="Se connecter !" />
+            </div>
+            <div class="inputBx">
+            <p>Vous n'êtes pas encore inscrit?<a href="inscription.php"> Rejoignez nous !</a></p>
+            </div>
             <?php
          if(isset($erreur)) {
             echo '<font color="red">'.$erreur."</font>";
          }
          ?>
+         
 	 </form>
-	 <p>Vous n'êtes pas encore inscrit ?<a href="inscription.php"> Rejoignez nous !</a></p>
-      </div>
+    </div>
+    </div>   
+   </section>
    </body>
 </html>
