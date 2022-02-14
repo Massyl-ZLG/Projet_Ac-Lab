@@ -11,26 +11,30 @@ if(isset($_SESSION['id']) && $_SESSION['id'] > 0) {
 ?>
 <html>
    <head>
-      <title>TUTO PHP</title>
+      <link rel="stylesheet" type="text/css" href="style.css">
+      <title>Profil</title>
       <meta charset="utf-8">
    </head>
    <body>
-      <div align="center">
+      <div class="action">
          <h2>Profil de <?php echo $userinfo['prenom']; ?></h2>
          <br /><br />
-         prenom = <?php echo $userinfo['prenom']; ?>
+         prenom : <?php echo $userinfo['prenom']; ?>
          <br />
-         Mail = <?php echo $userinfo['mail']; ?>
+         Mail : <?php echo $userinfo['mail']; ?>
          <br />
          <?php
          if(isset($_SESSION['id']) AND $userinfo['id'] == $_SESSION['id']) {         
          }
          ?>
-         <a href="editionprofil.php">Editer mon profil</a>
-         <a href="page_principale.php">Home</a>
-         <a href="deconnexion.php">Se déconnecter</a>
+         <div class="buttons"> 
+         <a class="stylebutton" href="editionprofil.php">Editer mon profil</a>
+         <a class="stylebutton" href="page_principale.php">Home</a>
+         <a class="stylebutton" href="deconnexion.php">Se déconnecter</a>
          <br />
+         </div>
       </div>
+      
    </body>
 </html>
 <?php

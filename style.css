@@ -1,10 +1,12 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900');
 *
+
 {
     margin: 0;
     padding: 0;
     font-family: 'Poppins', sans-serif;
 }
+
 body
 {
     /*a changer */
@@ -16,6 +18,16 @@ body
     top: 20px;
     right: 30px; 
 }
+.global 
+{
+    position: relative;
+    top: 20px;
+    right: 700px;
+}
+/* .global .edition h2
+{
+    position: center;
+} */
 .action .profile
 {
     position: relative;
@@ -38,7 +50,7 @@ body
     max-width: 100%;
     max-height: 100%;
 }
-.action .menu
+.action .menu 
 {
     position: absolute;
     top: 120px;
@@ -68,6 +80,7 @@ body
     background: #fff;
     transform: rotate(45deg);
 }
+
 /*
 .action .menu h3
 {
@@ -87,7 +100,7 @@ body
     font-weight: 400;
 }
 */
-.action .menu ul li 
+.action .menu ul li, .action .buttons, .global .buttons
 {
     list-style: none;
     padding: 10px 0;
@@ -95,19 +108,19 @@ body
     display: flex;
     align-items: center;
 }
-.action .menu ul li img
+.action .menu ul li img, .action .buttons img, .global .buttons img
 {
     max-width: 20px;
     margin-right: 10px;
     opacity: 0.5;
     transition: 0.5s;
 }
-.action .menu ul li:hover img
+.action .menu ul li:hover img, .action .buttons:hover img, .global .buttons:hover img
 {
     opacity: 1;
 
 }
-.action .menu ul li a
+.action .menu ul li a, .action .buttons a, .global .buttons a
 {
     display: inline-block;
     text-decoration: none;
@@ -115,7 +128,7 @@ body
     font-weight: 500;
     transition: 0.5s;
 }
-.action .menu ul li:hover a
+.action .menu ul li:hover a, .action .buttons:hover a, .global .buttons:hover a
 {
     color: #000000;
 
