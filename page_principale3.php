@@ -1,7 +1,3 @@
-<?php session_start ();
-if(!isset($_SESSION['counter'])) {
-  $_SESSION['counter'] = 1;
-}?>
 <!doctype html>
 <html>
   <head>
@@ -10,7 +6,7 @@ if(!isset($_SESSION['counter'])) {
   <link rel="stylesheet" href="css/css_home/style.css">
 </head>
 <body>
-<div class="fond">
+  <div class="fond">
     <img src="images/fond3.jpg">
   </div>
     <div class="action">
@@ -18,14 +14,13 @@ if(!isset($_SESSION['counter'])) {
     <img src="export.php?">
     </div>
     <?php
-
+    session_start();
     $bdd = new PDO('mysql:host=127.0.0.1;dbname=espace_membre', 'root', '');
     
     if(isset($_SESSION['id']) && $_SESSION['id'] > 0) {
     $getid = intval($_SESSION['id']);
-
     $requser = $bdd->prepare('SELECT * FROM membres WHERE id = ?');
-    $requser->execute(array($getid)); 
+    $requser->execute(array($getid));
     
     $userinfo = $requser->fetch();
     if(isset($userinfo['Genre']) && $userinfo['Genre'] == 'M'){
@@ -35,37 +30,38 @@ if(!isset($_SESSION['counter'])) {
 
     $req_recherche = $bdd->prepare('SELECT * FROM membres WHERE genre = ?');
     $req_recherche->execute([$genre_recherche]);
-
-    for($i=0;$i<$_SESSION['counter'];$i++){
+    //variable qui contient toutes les personnes du sexe opposé 
     $recherche_info = $req_recherche->fetch();
-    }
-
+    //$variale qui contient le premier element du tableau
+    $user_id_current = $recherche_info['id'];
     $user_prenom = $recherche_info['prenom'];
+    $fin_tab = end($recherche_info);
+    $current_tab = current($recherche_info);
     if(isset($_POST['jaime'])){
-      
+
       $req_like = $bdd->prepare('INSERT INTO match_bd (id_1,likes,id_2) VALUES (?, ?, ?)');
       $req_like->execute(array($getid, 1, $recherche_info['id']));
-      $req_check_match = $bdd->prepare('SELECT COUNT(*) FROM match_bd WHERE id_1 = ? AND id_2 = ?');
+
+      $req_check_match = $bdd->prepare('SELECT * FROM match_bd WHERE id_1 = ? AND id_2 = ?');
       $req_check_match->execute(array($recherche_info['id'], $getid));
-      $val = $req_check_match->fetch();
-      if($val[0]>0) {
-        echo '<script>alert("MATCH");</script>'; 
-      }
-      ++$_SESSION['counter'];
+      $nb_rows = $req_check_match->fetchColumn();
+      $recherche_info = $req_recherche->fetch();
       }
 
     if(isset($_POST['passe'])){
-      ++$_SESSION['counter'];
+     
+      $recherche_info = $req_recherche->fetch();
       }
 
       $user_date_nais = $recherche_info['date_nais'];
     $date_actuelle = date("Y-m-d");
     $diff = abs(strtotime($date_actuelle) - strtotime($user_date_nais));
     $years = floor($diff / (365*60*60*24));
+    
     ?>
     <div class="menu">
       <ul>
-        <li><img src="images/coeur.png"><a href="likes.php">Mes Likes</a></li>
+        <li><img src="images/coeur.png"><a href="likes.php">Mes likes</a></li>
         <li><img src="images/user.png"><a href="profil.php">My profil</a></li>
         <li><img src="images/editing.png"><a href="editionprofil.php">Modifier profil</a></li>
         <li><img src="images/messages.png"><a href="#">Messages</a></li>
@@ -73,24 +69,30 @@ if(!isset($_SESSION['counter'])) {
         <li><img src="images/support.png"><a href="contact.php">Contact</a></li>
         <li><img src="images/power-off.png"><a href="deconnexion.php">Se Deconnecter</a></li>
       </ul>
-  
-    </div>
-  </div>
+      </div> 
+      <!-- Affichage les profils des personnes proposés -->
+      <!-- Afficher toutes les personnes du sexe opposé, un profil au dessus d'un autre-->
+      <!-- Recuperer les images des personnes du sexe opposé -->
+      <!-- Afficher le prenom de la personne avec son age juste au dessus de la photo -->
+      <!-- Boutton Like ou Skip en dessous de la photo -->
+      <!--  select * from - where genre = =/= genre -->
+      <!--  -->
+      </div>
   <script>
     function menuToggle(){
       const toggleMenu = document.querySelector('.menu');
       toggleMenu.classList.toggle('active')
     }
   </script>
-  <section>
+        <section>
         <div class="profiles">
         <div class="formP">
-  <?php if(!empty($recherche_info['prenom'])){ ?>
          <h4><?php echo $recherche_info['prenom']; ?></h4>
-         <div class="imageP">
-         <?php echo '<img src="data:image/jpeg;base64,'.base64_encode($recherche_info['pdp']).'"/>'; ?>
-        </div>
-         <p> <?php echo $years; ?> ans </p>
+         <br><p>Age = <?php echo $years; ?></p> 
+         <br>
+          <div class="imageP">
+          <?php echo '<img src="data:image/jpeg;base64,'.base64_encode($recherche_info['pdp']).'"/>'; ?>
+          </div>
          <form action='' method='POST'>
          <div class="inputP">
          <input type='submit' name='jaime' value ="J'aime" />
@@ -98,17 +100,12 @@ if(!isset($_SESSION['counter'])) {
          <input type='submit' name='passe' value = "Passer"/>
          </div>
         </div>
-    </form>
-    </div>
+         </form>
+         </div>
          </div>
          </section>
-<?php
-    }
-    else{ ?>
-        <h1>Il n'y a plus de profils à vous proposer.
-      <?php
-    }
-}
-?>
 </body>
 </html>
+<?php
+}
+?>

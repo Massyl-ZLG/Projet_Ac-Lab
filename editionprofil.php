@@ -34,29 +34,44 @@ if(isset($_SESSION['id'])) {
 <html>
    <head>
       <title>TUTO PHP</title>
-      <link rel="stylesheet" href="style.css">
+      <link rel="stylesheet" href="css/css_edition/style.css">
       <meta charset="utf-8">
    </head>
    <body>
-   <div class="global">
-      <div class="buttons">  
-      <img src="images/home.png"><a href="page_principale.php">Home</a>
-      </div>
-      <div class="edition"> 
-         <h2>Edition de mon profil</h2>
+      <section>
+      <div class="imgBx">
+            <img src="images/fond_set.jpg">
+         </div>
+         <div class="contentBx">
+         <div class="formBx">
+         <div class="buttons">  
+         <img src="images/home.png"><a href="page_principale.php">Home</a> 
+         </div>
+         <h2>Editer mon profil</h2>
          <form method="POST" action="" enctype="multipart/form-data">
-	       <label>prenom :</label>
+         <div class="inputBx">
+               <span>Prénom</span>
 	       <input type="text" name="newprenom" placeholder="prenom" value="<?php echo $user['prenom']; ?>" /><br /><br />
-	       <label>Photo de profil :</label>
+         </div>
+         <div class="inputBx">
+               <span>Photo de profil</span>
 	       <input type ="file" name = "image"/>
-          <br><br> 
-               <label>Mail :</label>
+          </div>
+          <div class="inputBx">
+               <span>Mail</span>
                <input type="text" name="newmail" placeholder="Mail" value="<?php echo $user['mail']; ?>" /><br /><br />
-               <label>Mot de passe :</label>
+               </div>
+               <div class="inputBx">
+               <span>Mot de passe</span>
                <input type="password" name="newmdp1" placeholder="Mot de passe"/><br /><br />
-               <label>Confirmation - mot de passe :</label>
+               </div>
+               <div class="inputBx">
+               <span>Confirmation du mot de passe</span>
                <input type="password" name="newmdp2" placeholder="Confirmation du mot de passe" /><br /><br />
+               </div>
+               <div class="inputBx">
                <input name="actualiser" type="submit" value="Mettre à jour mon profil !" />
+               </div>
             </form>
 <?php
       if(isset($_POST["actualiser"])){
@@ -68,6 +83,8 @@ if(isset($_SESSION['id'])) {
 ?>  
    </div>
    </div>
+   </div>
+   </section>
    </body>
 </html>
 <?php   

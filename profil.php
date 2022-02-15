@@ -11,15 +11,19 @@ if(isset($_SESSION['id']) && $_SESSION['id'] > 0) {
 ?>
 <html>
    <head>
-      <link rel="stylesheet" type="text/css" href="style.css">
+      <link rel="stylesheet" type="text/css" href="css/css_profil/style.css">
       <title>Profil</title>
       <meta charset="utf-8">
    </head>
    <body>
-      <div class="action">
+      <section>
+   <div class="imgBx">
+      <img src="images/arriere_plan.jpg">
+   </div>
+      <div class="contentBx">
+         <div class="formBx">
          <h2>Profil de <?php echo $userinfo['prenom']; ?></h2>
-         <br /><br />
-         prenom : <?php echo $userinfo['prenom']; ?>
+         <br> Prenom : <?php echo $userinfo['prenom']; ?>
          <br />
          Mail : <?php echo $userinfo['mail']; ?>
          <br />
@@ -27,14 +31,18 @@ if(isset($_SESSION['id']) && $_SESSION['id'] > 0) {
          if(isset($_SESSION['id']) AND $userinfo['id'] == $_SESSION['id']) {         
          }
          ?>
-         <div class="buttons"> 
-         <a class="stylebutton" href="editionprofil.php">Editer mon profil</a>
-         <a class="stylebutton" href="page_principale.php">Home</a>
-         <a class="stylebutton" href="deconnexion.php">Se déconnecter</a>
-         <br />
+         <div class="buttons">  
+         <img src="images/home.png"><a href="page_principale.php">Home</a> 
+         </div>
+         <div class="buttons">  
+         <img src="images/settings2.png"><a href="editionprofil.php">Modifier</a> 
+         </div>
+         <div class="buttons">  
+         <img src="images/power-off.png"><a href="deconnexion.php">Deconnexion</a> 
          </div>
       </div>
-      
+      </div>
+      </section>
    </body>
 </html>
 <?php

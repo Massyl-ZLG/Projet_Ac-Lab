@@ -80,78 +80,54 @@ if(isset($_POST['forminscription'])) {
 
 <html>
    <head>
-      <link rel="stylesheet" type="text/css" href="css/style.css">
+      <link rel="stylesheet" type="text/css" href="css/css_inscription/style.css">
       <title>Inscription</title>
       <meta charset="utf-8">
    </head>
    <body>
-      <div align="center">
+      <section>
+         <div class="imgBx">
+            <img src="images/fond2.jpg">
+         </div>
+         <div class="contentBx">
+         <div class="formBx">
          <h2>Inscription</h2>
-         <br /><br />
          <form method="POST" action="">
-            <table>
-               <tr>
-                  <td align="right">
-                     <label for="prenom">Prénom :</label>
-                  </td>
-                  <td>
-                     <input type="text" placeholder="Votre prenom" id="prenom" name="prenom" value="<?php if(isset($prenom)) { echo $prenom; } ?>" />
-                  </td>
-               </tr>
-               <tr>
-                  <td align="right">
-                  <label for="naissance">Date de naissance</label>
-                  </td>
-                  <td>
+         <div class="inputBx">
+               <span>Prénom</span>
+                  <input type="text" placeholder="Votre prenom" id="prenom" name="prenom" value="<?php if(isset($prenom)) { echo $prenom; } ?>" />
+                  </div>
+                  <div class="inputBx">
+                  <span>Date de naissance</span>
                   <input type="date" id="naissance" name = "naissance" value="<?php if(isset($date_nais)) { echo $date_nais; } ?>" min="1922-02-07"/>
-                  </td>
-               </tr>
-               <tr>
-                  <td align="right">
-                  <label for="M">Homme</label>
+                  </div>  
+                  <div class="inputBx">
+                  <span>Homme</span>         
                   <input type="radio" id="M" name="genre" value="M"><br>
-                  <label for="F">Femme</label>
+                  </div>
+                  <div class="inputBx">
+                  <span>Femme</span>
                   <input type="radio" id="F" name="genre" value="F">
-               </tr>
-                  <td align="right">
-                     <label for="mail">Mail :</label>
-                  </td>
-                  <td>
-                     <input type="email" placeholder="Votre mail" id="mail" name="mail" value="<?php if(isset($mail)) { echo $mail; } ?>" pattern="[\w.%+-]+@lacatholille.fr" />
-                  </td>
-               </tr>
-               <tr>
-                  <td align="right">
-                     <label for="mail2">Confirmation du mail :</label>
-                  </td>
-                  <td>
-                     <input type="email" placeholder="Confirmez votre mail" id="mail2" name="mail2" value="<?php if(isset($mail2)) { echo $mail2; } ?>" />
-                  </td>
-               </tr>
-               <tr>
-                  <td align="right">
-                     <label for="mdp">Mot de passe :</label>
-                  </td>
-                  <td>
-                     <input type="password" placeholder="Votre mot de passe" id="mdp" name="mdp" />
-                  </td>
-               </tr>
-               <tr>
-                  <td align="right">
-                     <label for="mdp2">Confirmation du mot de passe :</label>
-                  </td>
-                  <td>
-                     <input type="password" placeholder="Confirmez votre mdp" id="mdp2" name="mdp2" />
-                  </td>
-               </tr>
-               <tr>
-                  <td></td>
-                  <td align="center">
-                     <br />
-                  </td>
-               </tr>
-            </table>
-            <div class = "message">
+                  </div>
+                  <div class="inputBx">
+                  <span>Mail</span>
+                  <input type="email" placeholder="Votre mail" id="mail" name="mail" value="<?php if(isset($mail)) { echo $mail; } ?>" pattern="[\w.%+-]+@lacatholille.fr" />
+                  </div>
+                  <div class="inputBx">
+                  <span>Confirmation mail</span>
+                  <input type="email" placeholder="Confirmez votre mail" id="mail2" name="mail2" value="<?php if(isset($mail2)) { echo $mail2; } ?>" />
+                  </div>  
+                  <div class="inputBx">
+                  <span>Mot de passe</span> 
+                  <input type="password" placeholder="Votre mot de passe" id="mdp" name="mdp" />   
+                  </div>
+                  <div class="inputBx">
+                  <span>Confirmation mot de passe</span>
+                  <input type="password" placeholder="Confirmez votre mot de passe" id="mdp2" name="mdp2" />
+                  </div>
+                  <div class="inputBx">
+                  <p>Vous avez déjà un compte ?<a href="connexion.php"> Connectez vous !</a></p>
+                  </div>
             <?php
          if(isset($erreur)) {
             echo '<font color="red">'.$erreur."</font>";
@@ -162,10 +138,13 @@ if(isset($_POST['forminscription'])) {
          }
 
          ?>
+         <div class="inputBx">
+         <input type="submit" name="forminscription" value="Je m'inscris" />
          </div>
-            <input type="submit" name="forminscription" value="Je m'inscris" />
          </form>
-         <p>Vous avez déjà un compte ?<a href="connexion.php"> Connectez vous !</a></p>
+         </div>
+         </div>
       </div>
+      </section>
    </body>
 </html>

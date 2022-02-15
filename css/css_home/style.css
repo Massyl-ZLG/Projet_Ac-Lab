@@ -1,0 +1,255 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900');
+*
+
+{
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+body
+{
+    background: rgb(255, 255, 255);
+}
+/* .fond
+{
+   position: relative;
+   width: 50%;
+   height: 100%; 
+}
+.fond:before{
+    content: '';
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(225deg,#e91e63, #03a9f4);
+    z-index: 1;
+    mix-blend-mode: screen;
+} */
+.fond img{
+    position: fixed;
+    top: 0;
+    left: 700px;
+    width: 50%;
+    height: 100%;
+    object-fit: cover;
+}
+.action
+{
+    position: fixed;
+    top: 20px;
+    right: 30px; 
+}
+.global 
+{
+    position: relative;
+    top: 20px;
+    right: 700px;
+}
+.action .profile
+{
+    position: relative;
+    width: 60px;
+    height: 60px; 
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+}
+/*modifier ici pour centrer la pdp */
+.action .profile img
+{
+    width: 150px;
+    height: 150px;
+    line-height: 50px;
+    display: inline-block;
+    /*width: 100;
+    height: 100;
+    object-fit: cover;*/
+    max-width: 100%;
+    max-height: 100%;
+}
+.action .menu 
+{
+    position: absolute;
+    top: 120px;
+    right: -10px;
+    padding: 10px 20px;
+    background: #fff;
+    width: 200px;
+    box-sizing: 0 5px 25px rgba(0,0,0,0.1);
+    border-radius: 15px;
+    transition: 0.5s;
+    visibility: hidden;
+    opacity: 0;
+}
+.action .menu.active
+{
+    top: 80px;
+    visibility: visible;
+    opacity: 1;
+}
+.action .menu::before{
+    content: '';
+    position: absolute;
+    top: -5px;
+    right: 28px;
+    width: 20px;
+    height: 20px;
+    background: #fff;
+    transform: rotate(45deg);
+}
+
+/*
+.action .menu h3
+{
+    width: 100%;
+    text-align: center;
+    font-size: 18px;
+    padding: 20px 0;
+    font-weight: 500;
+    font-size: 18px;
+    color: #555;
+    line-height: 1.2em;
+}
+.action .menu h3 span
+{
+    font-size: 14px;
+    color: #cecece;
+    font-weight: 400;
+}
+*/
+.action .menu h3 
+{
+    color: #eef3f5;
+    font-weight: 600;
+    font-size: 5em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    /* border-bottom: 4px solid #ff4584; */
+    display: inline-block;
+    letter-spacing: 1px;
+}
+.action .menu ul li, .action .buttons, .global .buttons
+{
+    list-style: none;
+    padding: 10px 0;
+    border-top: 1px solid rgba(0,0,0,0.05);
+    display: flex;
+    align-items: center;
+}
+.action .menu ul li img, .action .buttons img, .global .buttons img
+{
+    max-width: 20px;
+    margin-right: 10px;
+    opacity: 0.5;
+    transition: 0.5s;
+}
+.action .menu ul li:hover img, .action .buttons:hover img, .global .buttons:hover img
+{
+    opacity: 1;
+
+}
+.action .menu ul li a, .action .buttons a, .global .buttons a
+{
+    display: inline-block;
+    text-decoration: none;
+    color: #555;
+    font-weight: 500;
+    transition: 0.5s;
+}
+.action .menu ul li:hover a, .action .buttons:hover a, .global .buttons:hover a
+{
+    color: #000000;
+
+}
+section .profiles
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: 100%;
+}
+section .profiles .formP 
+{
+    width: 50%;
+}
+section .profiles .formP h4
+{
+    color: #607d8b;
+    font-weight: 600;
+    font-size: 1.5em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    border-bottom: 4px solid #ff4584;
+    display: inline-block;
+    letter-spacing: 1px;
+}
+section .profiles .formP p
+{
+    color: #000000;
+    font-weight: 600;
+    font-size: 1em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    /* border-bottom: 4px solid #ff4584; */
+    display: inline-block;
+    letter-spacing: 1px;  
+}
+section .profiles .formP .imageP
+{
+   position: center;
+   width: 100%;
+   height: 100%; 
+}
+section .profiles .formP .imageP:before{
+    content: '';
+    position: center;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(225deg,#e91e63, #03a9f4);
+    z-index: 1;
+    mix-blend-mode: screen;
+}
+section .profiles .formP .imageP img
+{
+    position: center;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+section .profiles .formP .inputP
+{
+    margin-bottom: 5px;
+}
+section .profiles .formP .inputP input[name="jaime"]
+{
+    background: #ff4584;
+    color: #fff;
+    outline: none;
+    border: none;
+    font-weight: 500;
+    cursor: pointer;
+}
+section .profiles .formP .inputP input[name="jaime"]:hover
+{
+    background: #f53677; 
+}
+section .profiles .formP .inputP input[name="passe"]
+{
+    background: #45a5ff;
+    color: #fff;
+    outline: none;
+    border: none;
+    font-weight: 500;
+    cursor: pointer;
+}
+section .profiles .formP .inputP input[name="passe"]:hover
+{
+    background: #36cff5; 
+}
