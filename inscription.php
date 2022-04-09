@@ -1,4 +1,5 @@
 <?php
+session_start();
 $bdd = new PDO('mysql:host=127.0.0.1;dbname=espace_membre', 'root', '');
  
 if(isset($_POST['forminscription'])) {
@@ -41,19 +42,10 @@ if(isset($_POST['forminscription'])) {
                      $header.='Content-Type:text/html; charset="utf-8"'."\n";
                      $header.='Content-Transfer-Encoding: 8bit';
                      
-                     $message='
-                     <html>
-                        <body>
-                           <div align="center">
-                              <a href="http://aclab/confirmation.php?prenom='.urlencode($prenom).'&key='.$key.'">Confirmez votre compte !</a>
-                           </div>
-                        </body>
-                     </html>
-                     ';
-
-                     mail($mail, "Confirmation de compte", $message, $header); 
                      
-                     $success = "Votre compte a bien été créé ! Veuillez confirmer votre mail";
+                     
+                     $success = "Votre compte a bien été créé !";
+                     
                      } else {
                         $erreur = "Désolé, tu es trop jeune !";
                      }
@@ -71,6 +63,23 @@ if(isset($_POST['forminscription'])) {
          }
       } else {
          $erreur = "Votre prenom ne doit pas dépasser 255 caractères !";
+      }
+   } else {
+      $erreur = "Tous les champs doivent être complétés !";
+   }
+
+   if(!empty($mail) AND !empty($mdp)) {
+      $requser = $bdd->prepare("SELECT * FROM membres WHERE mail = ? AND motdepasse = ?");
+      $requser->execute(array($mail, $mdp));
+      $userexist = $requser->rowCount();
+      if($userexist == 1) {
+         $userinfo = $requser->fetch();
+         $_SESSION['id'] = $userinfo['id'];
+         $_SESSION['prenom'] = $userinfo['prenom'];
+         $_SESSION['mail'] = $userinfo['mail'];
+         header("Location: page_principale.php");
+      } else {
+         $erreur = "Mauvais mail ou mot de passe !";
       }
    } else {
       $erreur = "Tous les champs doivent être complétés !";
