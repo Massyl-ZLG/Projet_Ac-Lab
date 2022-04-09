@@ -1,0 +1,28 @@
+version: '3.6'
+
+services:
+    db:
+      container_name: db
+      image: mysql/mysql-server
+#      volumes:
+#        - ./db/data/:/var/lib/mysql
+      restart: always
+      ports:
+        - "3306:3306"
+#      networks:
+#        - gateway
+      environment:
+        MYSQL_ROOT_PASSWORD: root
+        MYSQL_DATABASE: espace_membre
+        MYSQL_USER: panier
+        MYSQL_PASSWORD: panier
+      volumes:
+        - ./dump:/docker-entrypoint-initdb.d
+    php-env:
+      build: .
+      volumes:
+        - ./aclab:/var/www/html
+        - ./aclab/inscription.php:/var/www/html/index.php
+      ports:
+        - 9000:80
+
