@@ -25,4 +25,7 @@ services:
         - ./aclab/inscription.php:/var/www/html/index.php
       ports:
         - 9000:80
+      depends_on:
+        - db
+
 
