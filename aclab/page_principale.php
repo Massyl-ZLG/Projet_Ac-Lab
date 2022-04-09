@@ -19,13 +19,13 @@ if(!isset($_SESSION['counter'])) {
     </div>
     <?php
 
-$servername = "database";
-$username = "root";
-$password = "123";
-$dbname = "espace_membre";
-$port = "3306";
+    $servername = "database";
+    $username = "root";
+    $password = "123";
+    $dbname = "espace_membre";
+    $port = "3306";
 
-$bdd = new PDO("mysql:host=$servername;port=$port;dbname=$dbname",$username,$password);
+    $bdd = new PDO("mysql:host=$servername;port=$port;dbname=$dbname",$username,$password);
     
     if(isset($_SESSION['id']) && $_SESSION['id'] > 0) {
     $getid = intval($_SESSION['id']);
@@ -64,7 +64,7 @@ $bdd = new PDO("mysql:host=$servername;port=$port;dbname=$dbname",$username,$pas
       ++$_SESSION['counter'];
       }
 
-      $user_date_nais = $recherche_info['date_nais'];
+    $user_date_nais = $recherche_info['date_nais'];
     $date_actuelle = date("Y-m-d");
     $diff = abs(strtotime($date_actuelle) - strtotime($user_date_nais));
     $years = floor($diff / (365*60*60*24));
