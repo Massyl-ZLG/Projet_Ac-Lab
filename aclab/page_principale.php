@@ -19,7 +19,13 @@ if(!isset($_SESSION['counter'])) {
     </div>
     <?php
 
-    $bdd = new PDO('mysql:host=127.0.0.1;dbname=espace_membre', 'root', '');
+$servername = "database";
+$username = "root";
+$password = "123";
+$dbname = "espace_membre";
+$port = "3306";
+
+$bdd = new PDO("mysql:host=$servername;port=$port;dbname=$dbname",$username,$password);
     
     if(isset($_SESSION['id']) && $_SESSION['id'] > 0) {
     $getid = intval($_SESSION['id']);

@@ -1,31 +1,26 @@
-version: '3.6'
+version: '3'
 
 services:
-    db:
-      container_name: db
-      image: mysql/mysql-server
-#      volumes:
-#        - ./db/data/:/var/lib/mysql
-      restart: always
-      ports:
-        - "3306:3306"
-#      networks:
-#        - gateway
-      environment:
-        MYSQL_ROOT_PASSWORD: root
-        MYSQL_DATABASE: espace_membre
-        MYSQL_USER: panier
-        MYSQL_PASSWORD: panier
-      volumes:
-        - ./dump:/docker-entrypoint-initdb.d
-    php-env:
-      build: .
-      volumes:
-        - ./aclab:/var/www/html
-        - ./aclab/inscription.php:/var/www/html/index.php
-      ports:
-        - 9000:80
-      depends_on:
-        - db
-
-
+  database:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: 123
+      MYSQL_DATABASE: espace_membre
+      MYSQL_USER: devuser
+      MYSQL_PASSWORD: 123
+    volumes:
+      - ./dump:/docker-entrypoint-initdb.d
+    ports:
+      - "3306:3306"
+  web:
+    build: .
+    container_name: php_web
+    depends_on:
+      - database
+    volumes:
+      - ./aclab:/var/www/html
+      - ./aclab/inscription.php:/var/www/html/index.php
+    ports:
+      - "8100:80"
+    stdin_open: true
+    tty: true
